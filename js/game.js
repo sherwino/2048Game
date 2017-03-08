@@ -147,7 +147,7 @@ Game2048.prototype._transposeMatrix = function () {
 };
 
 Game2048.prototype.move = function (direction) {
-  ion.sound.play("snap");
+  ion.sound.play("beer_can_opening");
   if (!this._gameFinished()) {
     switch (direction) {
       case "up":    boardChanged = this._moveUp();    break;
@@ -289,7 +289,7 @@ document.addEventListener("keydown", moveListeners);
 //load sounds from ion sound library ion.sound.min.js
 function loadSounds () {
   ion.sound({
-    sounds: [{name: "snap"}, {name: "tap"}],
+    sounds: [{name: "beer_can_opening"}, {name: "tap"}],
 
     path: "./js/lib/ion.sound-3.0.7/sounds/",
     preload: true,
