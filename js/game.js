@@ -1,3 +1,6 @@
+//------------------------------------------------
+
+
 function Game2048 () {
   this.board = [
     [null,null,null,null],
@@ -144,6 +147,7 @@ Game2048.prototype._transposeMatrix = function () {
 };
 
 Game2048.prototype.move = function (direction) {
+  ion.sound.play("snap");
   if (!this._gameFinished()) {
     switch (direction) {
       case "up":    boardChanged = this._moveUp();    break;
@@ -204,19 +208,109 @@ Game2048.prototype._isGameLost = function () {
   this.lost = isLost;
 };
 
+window.onload = function () {
+  game = new Game2048();
+  renderTiles();
+};
+
+function renderTiles () {
+  game.board.forEach(function(row, rowIndex){
+    row.forEach(function (cell, cellIndex) {
+      if (cell) {
+        var tileContainer = document.getElementById("tile-container");
+        var newTile       = document.createElement("div");
+
+        newTile.classList  = "tile val-" + cell;
+        newTile.classList += " tile-position-" + rowIndex + "-" + cellIndex;
+        newTile.innerHTML  = (cell);
+
+        tileContainer.appendChild(newTile);
+      }
+    });
+  });
+}
+
+function updateScore () {
+  var score          = game.score;
+  var scoreContainer = document.getElementsByClassName("js-score");
+
+  Array.prototype.slice.call(scoreContainer).forEach(function (span) {
+    span.innerHTML = score;
+  });
+}
+
+function gameStatus () {
+  if (game.lost()) {
+    document.getElementById("game-over").classList = "show-won";
+  } else if (game.lose()) {
+    document.getElementById("game-over").classList = "show-lost";
+  }
+}
+
+function moveListeners (event) {
+  var keys = [37, 38, 39, 40];
+
+  if (keys.indexOf(event.keyCode) < 0)
+
+    return;
+
+  switch (event.keyCode) {
+    case 37: game.move("left");  break;
+    case 38: game.move("up");    break;
+    case 39: game.move("right"); break;
+    case 40: game.move("down");  break;
+  }
+
+  resetTiles();
+  renderTiles();
+  updateScore();
+}
+
+function resetTiles () {
+
+  var tilesContainer = document.getElementById("tile-container");
+  //grab all the tiles off the tiilesContainer
+  var tiles          = tilesContainer.getElementsByClassName("tile");
+//taking the slice method, and lending it to this node collection getElementsByClassName and creating arrays from it
+  Array.prototype.slice.call(tiles).forEach(function (tile) {
+    tilesContainer.removeChild(tile);
+  });
+
+
+// for(i = 0; i < newRow.length - 1; i++) {
+//   if (newRow[i+1] === newRow[i]) {
+//     ion.sound.play("tap");
+//     // more code
+//   }
+}
+
+document.addEventListener("keydown", moveListeners);
+
+//load sounds from ion sound library ion.sound.min.js
+function loadSounds () {
+  ion.sound({
+    sounds: [{name: "snap"}, {name: "tap"}],
+
+    path: "./js/lib/ion.sound-3.0.7/sounds/",
+    preload: true,
+    volume: 1.0
+  });
+}
+
 $(document).ready(function (){
   var game = new Game2048();
   console.log("Initial Board ");
-  game._renderBoard();
-  game.move("up");
-  game._renderBoard();
-  game.move("down");
-  game._renderBoard();
-  game.move("left");
-  game._renderBoard();
-  game.move("right");
-  game._renderBoard();
-
-  console.log("Game has been loaded");
+  loadSounds ();
+  // game._renderBoard();
+  // game.move("up");
+  // game._renderBoard();
+  // game.move("down");
+  // game._renderBoard();
+  // game.move("left");
+  // game._renderBoard();
+  // game.move("right");
+  // game._renderBoard();
+  //
+  // console.log("Game has been loaded");
 
 });

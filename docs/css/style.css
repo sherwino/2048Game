@@ -1,0 +1,81 @@
+body {
+  color: #3c5566;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  margin: 0 25%;
+  padding: 0
+}
+
+#title {
+  text-align: center;
+  width: 600px;
+}
+
+#game-board {
+  background: #3582b8;
+  border-radius: 4px;
+  padding: 10px;
+  width: 600px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.row {
+  height: 100%;
+  width: 100%;
+}
+
+.cell,
+.tile {
+  background: rgba(225, 226, 241, 0.5);
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 130px;
+  float: left;
+  margin: 10px;
+  width: 130px;
+}
+
+.tile {
+  background: rgba(225, 226, 241, 0.35);
+  box-sizing: border-box;
+  color: #fff;
+  float: none;
+  font-size: 55px;
+  font-weight: bold;
+  padding-top: 30px;
+  position: absolute;
+  text-align: center;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.tile.tile-position-0-0 { transform: translate(0, 0); }
+.tile.tile-position-0-1 { transform: translate(150px, 0); }
+.tile.tile-position-0-2 { transform: translate(300px, 0); }
+.tile.tile-position-0-3 { transform: translate(450px, 0); }
+.tile.tile-position-1-0 { transform: translate(0, 150px); }
+.tile.tile-position-1-1 { transform: translate(150px, 150px); }
+.tile.tile-position-1-2 { transform: translate(300px, 150px); }
+.tile.tile-position-1-3 { transform: translate(450px, 150px); }
+.tile.tile-position-2-0 { transform: translate(0, 300px); }
+.tile.tile-position-2-1 { transform: translate(150px, 300px); }
+.tile.tile-position-2-2 { transform: translate(300px, 300px); }
+.tile.tile-position-2-3 { transform: translate(450px, 300px); }
+.tile.tile-position-3-0 { transform: translate(0, 450px); }
+.tile.tile-position-3-1 { transform: translate(150px, 450px); }
+.tile.tile-position-3-2 { transform: translate(300px, 450px); }
+.tile.tile-position-3-3 { transform: translate(450px, 450px); }
+
+.tile.val-2    { background: #93d2ff; }
+.tile.val-4    { background: #4ab5ff; }
+.tile.val-8    { background: #289cef; }
+.tile.val-16   { background: #2a72a3; }
+.tile.val-32   { background: #105a86; }
+.tile.val-64   { background: #00548c; }
+.tile.val-128  { background: #004777; }
+.tile.val-256  { background: #002c4a; }
+.tile.val-512  { background: #000F35; }
+.tile.val-1024 { background: #000921; font-size: 50px; padding-top: 35px; }
+.tile.val-2048 { background: #009894; font-size: 50px; padding-top: 35px; }
