@@ -240,8 +240,10 @@ function updateScore() {
 }
 
 function gameStatus() {
+  game._isGameLost();
   const gameoverEl = document.getElementById("game-over");
-  if (game.lost()) {
+  console.log("gameStatus", game);
+  if (game.lost) {
     gameoverEl.innerText = "GAME OVER!";
     gameoverEl.style.display = "block";
   } else if (game.won) {
