@@ -6,6 +6,12 @@ body {
   padding: 0
 }
 
+.game-over {
+  font-size: 100px;
+  color: red;
+  display: none;
+}
+
 #title {
   text-align: center;
   width: 600px;
