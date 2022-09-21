@@ -177,7 +177,6 @@ Game2048.prototype._isGameLost = function () {
   if (this._getAvailablePosition()) return;
 
   var that = this;
-  this.lost = true;
 
   this.board.forEach(function (row, rowIndex) {
     row.forEach(function (cell, cellIndex) {
@@ -202,8 +201,11 @@ Game2048.prototype._isGameLost = function () {
         current === bottom ||
         current === left ||
         current === right
-      )
+      ) {
         this.lost = false;
+      } else {
+        this.lost = true;
+      }
     });
   });
 };
